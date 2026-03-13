@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Sayana Yoga Trainer',
-  description: 'Personal yoga trainer website'
+  title: 'Astha Parajuli | Personal Yoga Trainer',
+  description: 'Book a session with Astha Parajuli for personal yoga and meditation coaching programs.'
 };
 
 export default function RootLayout({ children }) {

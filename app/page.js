@@ -1,228 +1,249 @@
-const navItems = ['Pages', 'Blog', 'Shop', 'Portfolio', 'Contact'];
+import Link from 'next/link';
+import SiteChrome from './components/SiteChrome';
 
-const featureCards = [
-  { title: 'Workout Routines', icon: '🧘', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.' },
-  { title: 'Pleasant Situation', icon: '🌿', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.' },
-  { title: 'Qualified Instructors', icon: '✨', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.' }
-];
-
-const coachingCards = [
+const programs = [
   {
-    title: 'Experienced Train',
-    img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=700&q=80'
+    title: 'Private 1:1 Yoga',
+    text: 'Personal sessions for flexibility, alignment, and strength at your pace.',
+    image:
+      'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80'
   },
   {
-    title: 'Individual Approach',
-    img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=700&q=80'
+    title: 'Stress Relief Yoga',
+    text: 'Breath-led movement to reduce anxiety and improve emotional balance.',
+    image:
+      'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=80'
   },
   {
-    title: 'Free Trial Session',
-    img: 'https://images.unsplash.com/photo-1599447421416-3414500d18a5?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    title: 'Quality Health Tips',
-    img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80'
+    title: 'Online Live Classes',
+    text: 'Join guided sessions from home with weekly progress reviews and support.',
+    image:
+      'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80'
   }
 ];
 
-const practiceCards = [
+const benefits = [
+  'Book a session with Astha Parajuli for private yoga and meditation coaching',
+  'Customized weekly plans with progress tracking and accountability',
+  'Focused support for posture, flexibility, and stress relief',
+  'Available for online sessions and in-person training'
+];
+
+const plans = [
   {
-    title: 'Absolute Beginners',
-    type: 'Ashtanga Yoga',
-    img: 'https://images.unsplash.com/photo-1506629905607-d9c297d8b8de?auto=format&fit=crop&w=900&q=80'
+    name: 'Starter Plan',
+    price: '$79',
+    period: '/session',
+    features: ['60-minute private class', 'Assessment and mobility test', 'Basic weekly routine']
   },
   {
-    title: 'Slow & Strong',
-    type: 'Ashtanga Yoga',
-    img: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?auto=format&fit=crop&w=900&q=80'
+    name: 'Transformation Plan',
+    price: '$259',
+    period: '/month',
+    features: ['4 private sessions/month', 'Personal practice calendar', 'WhatsApp support'],
+    featured: true
   },
   {
-    title: 'Control Powerhouse',
-    type: 'Hatha Yoga',
-    img: 'https://images.unsplash.com/photo-1593810450967-f9c42742e326?auto=format&fit=crop&w=900&q=80'
+    name: 'Premium Plan',
+    price: '$449',
+    period: '/month',
+    features: ['8 private sessions/month', 'Nutrition and recovery tips', 'Priority scheduling']
   }
 ];
 
 const testimonials = [
-  { name: 'Joan Hober', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed eiusmod tempor incididunt ut labore.' },
-  { name: 'Mia Vicobu', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed eiusmod tempor incididunt ut labore.' },
-  { name: 'Robert Fox', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed eiusmod tempor incididunt ut labore.' }
+  {
+    name: 'Alicia Carter',
+    role: 'Entrepreneur',
+    quote:
+      'Hiring Astha for private yoga sessions changed my routine. My lower back pain reduced and my posture improved dramatically.'
+  },
+  {
+    name: 'Daniel Brooks',
+    role: 'Product Manager',
+    quote:
+      'Astha is structured, professional, and supportive. I feel stronger and much less stressed during the work week.'
+  },
+  {
+    name: 'Neha Patel',
+    role: 'Doctor',
+    quote:
+      'Astha combines breathwork and movement in a practical way. Her training helped me build consistency for the first time.'
+  }
 ];
 
 export default function Home() {
   return (
-    <main>
-      <section className="topBar">
-        <span>📞 +21 457-7889</span>
-        <span>✉️ sayana@yogastudio.com</span>
-        <span>◉ ◉ ◉</span>
-      </section>
-
-      <header className="navbar sectionContent">
-        <div className="logo">SAYANA</div>
-        <nav>
-          {navItems.map((item) => (
-            <a key={item} href="#">{item}</a>
-          ))}
-        </nav>
-        <button className="pillBtn">Book an Appointment</button>
-      </header>
-
-      <section className="hero sectionContent">
-        <div className="heroText fadeUp">
-          <p className="label">Hi! My Name is Jemmie</p>
-          <h1>Start Healing Your Mind, Body & Soul</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-          <button className="pillBtn">Book a Session</button>
+    <SiteChrome activePath="/">
+      <div className="hero">
+        <div className="heroContent">
+          <p className="eyebrow">SPIRITUAL YOGA TRAINER</p>
+          <h1>Book a Session with Astha Parajuli for Yoga and Meditation Training.</h1>
+          <p>
+            Work one-to-one with Astha Parajuli to improve flexibility, reduce stress, and build a
+            spiritual daily practice through guided yoga and meditation.
+          </p>
+          <div className="heroCta">
+            <Link href="/contact" className="btn btnPrimary">
+              Book a Session
+            </Link>
+            <Link href="/programs" className="btn btnGhost">
+              View Programs
+            </Link>
+          </div>
+          <div className="heroStats">
+            <article>
+              <h3>3.5k+</h3>
+              <p>Guided Sessions</p>
+            </article>
+            <article>
+              <h3>108+</h3>
+              <p>Meditation Circles</p>
+            </article>
+            <article>
+              <h3>12+</h3>
+              <p>Years of Practice</p>
+            </article>
+          </div>
         </div>
-        <div className="heroImageWrap floatIn">
-          <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=700&q=80" alt="Yoga pose" />
-          <div className="badge badgeTop">120+ Programs</div>
-          <div className="badge badgeBottom">16 Years Of Experience</div>
-          <div className="circleOne" />
-          <div className="circleTwo" />
+
+        <div className="heroVisual">
+          <div className="shapeOne" />
+          <div className="shapeTwo" />
+          <img
+            src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=1000&q=80"
+            alt="Personal yoga trainer"
+          />
+          <div className="floatingCard">
+            <strong>Moonlight Sound Healing</strong>
+            <span>Friday at 7:30 PM</span>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <div className="wave" />
-
-      <section className="sectionContent centerSection">
-        <p className="sectionMini">New Yoga Classes</p>
-        <h2>A Joyful Investment in Your Body & Mind</h2>
-        <div className="cardGrid threeCol">
-          {featureCards.map((card) => (
-            <article key={card.title} className="card hoverLift">
-              <div className="emoji">{card.icon}</div>
-              <h3>{card.title}</h3>
-              <p>{card.desc}</p>
+      <section className="container section">
+        <div className="sectionHead">
+          <p className="eyebrow">SPIRITUAL BENEFITS</p>
+          <h2>A Sacred Routine for the Body, Breath, and Inner Awareness</h2>
+        </div>
+        <div className="benefitGrid">
+          {benefits.map((item) => (
+            <article key={item} className="benefitCard">
+              <span>✓</span>
+              <p>{item}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="about sectionContent">
-        <div className="aboutImg hoverZoom">
-          <img src="https://images.unsplash.com/photo-1485727749690-d091e8284ef3?auto=format&fit=crop&w=900&q=80" alt="Instructor" />
-        </div>
-        <div>
-          <p className="sectionMini">About Me</p>
-          <h2>Hi! My name is Jemmie & I&apos;m Here To Help You Find The Confidence</h2>
-          <div className="checkCard">A joyful investment in your body, mind & spirit.</div>
-          <div className="checkCard">A joyful investment in reducing mental stress.</div>
-        </div>
-      </section>
-
-      <section className="turquoiseBlock">
-        <div className="sectionContent centerSection">
-          <p className="sectionMini light">A Personal Practice</p>
-          <h2 className="light">Coaching Program for Yoga</h2>
-          <div className="cardGrid fourCol imageCards">
-            {coachingCards.map((card) => (
-              <article key={card.title} className="imageCard hoverLift">
-                <img src={card.img} alt={card.title} />
-                <div>{card.title}</div>
+      <section className="programSection">
+        <div className="container section">
+          <div className="sectionHead center">
+            <p className="eyebrow">SIGNATURE PROGRAMS</p>
+            <h2>Yoga and Meditation Programs With Spiritual Depth</h2>
+          </div>
+          <div className="programGrid">
+            {programs.map((program) => (
+              <article key={program.title} className="programCard">
+                <img src={program.image} alt={program.title} />
+                <div>
+                  <h3>{program.title}</h3>
+                  <p>{program.text}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="banner sectionContent hoverLift">
-        <h3>Choose The Most Comfortable Way To Train</h3>
-        <button className="pillBtn">Get Started</button>
-      </section>
-
-      <section className="about sectionContent reverseGap">
-        <div className="collage">
-          <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?auto=format&fit=crop&w=800&q=80" alt="Meditation collage" />
+      <section className="container section about">
+        <div className="aboutImage">
+          <img
+            src="https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Yoga trainer coaching a student"
+          />
         </div>
-        <div>
-          <p className="sectionMini">Improve Yourself</p>
-          <h2>Choose The Most Comfortable Way to Meditation</h2>
-          <ul className="list">
-            <li>Pilates & Yoga Classes</li>
-            <li>Zumba Classes</li>
+        <div className="aboutContent">
+          <p className="eyebrow">ABOUT ASTHA PARAJULI</p>
+          <h2>About Astha Parajuli: Your Personal Yoga and Meditation Trainer.</h2>
+          <p>
+            Astha designs each class around your personal goals, whether you want to improve posture,
+            reduce anxiety, or deepen your spiritual practice through meditation.
+          </p>
+          <ul>
+            <li>Chakra-aligned breathwork and grounding asanas</li>
+            <li>Mindful sequences for stress release and nervous system reset</li>
+            <li>Simple daily rituals to sustain spiritual wellbeing</li>
           </ul>
+          <Link href="/about" className="btn btnPrimary">
+            Meet Astha
+          </Link>
         </div>
       </section>
 
-      <section className="sectionContent centerSection">
-        <p className="sectionMini">Explore The Yoga Lifestyle</p>
-        <h2>A Personal Practice For Anxiety Relief</h2>
-        <div className="cardGrid threeCol imageCards">
-          {practiceCards.map((card) => (
-            <article key={card.title} className="imageCard hoverLift">
-              <img src={card.img} alt={card.title} />
-              <div>
-                <strong>{card.title}</strong>
-                <p>{card.type}</p>
-              </div>
+      <section className="container section">
+        <div className="sectionHead center">
+          <p className="eyebrow">PRICING PLANS</p>
+          <h2>Choose the Path That Supports Your Practice</h2>
+        </div>
+        <div className="pricingGrid">
+          {plans.map((plan) => (
+            <article key={plan.name} className={`priceCard ${plan.featured ? 'featured' : ''}`}>
+              <h3>{plan.name}</h3>
+              <p className="price">
+                {plan.price}
+                <span>{plan.period}</span>
+              </p>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <Link href="/contact" className={`btn ${plan.featured ? 'btnDark' : 'btnGhost'}`}>
+                Choose Plan
+              </Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="testimonials">
-        <div className="sectionContent centerSection">
-          <p className="sectionMini">Testimonial</p>
-          <h2>Our Happy Customers</h2>
-          <div className="cardGrid threeCol">
-            {testimonials.map((t) => (
-              <article key={t.name} className="card hoverLift">
-                <p>“{t.text}”</p>
-                <h4>{t.name}</h4>
+      <section className="testimonialSection">
+        <div className="container section">
+          <div className="sectionHead center">
+            <p className="eyebrow">CLIENT STORIES</p>
+            <h2>Stories of Healing and Inner Transformation</h2>
+          </div>
+          <div className="testimonialGrid">
+            {testimonials.map((item) => (
+              <article className="testimonialCard" key={item.name}>
+                <p>"{item.quote}"</p>
+                <h4>{item.name}</h4>
+                <span>{item.role}</span>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="about sectionContent">
-        <div>
-          <p className="sectionMini">Best Fitness Exercise</p>
-          <h2>A Joyful Investment in Your Body Mind And Spirit</h2>
-          <ol className="list ordered">
-            <li>Enable body to fight disease effectively</li>
-            <li>Ability to recover from illness</li>
-          </ol>
-        </div>
-        <div className="aboutImg hoverZoom statImage">
-          <img src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=1000&q=80" alt="Yoga bridge pose" />
-          <div className="statBadge">289k+<span>Online Classes</span></div>
-        </div>
-      </section>
-
-      <section className="newsletter">
-        <div className="sectionContent newsletterInner">
-          <h3>Join Our Newsletter</h3>
-          <div className="newsletterForm">
-            <input type="email" placeholder="Enter Your Email Address" />
-            <button>Subscribe Now</button>
+      <section className="ctaSection">
+        <div className="container ctaInner">
+          <div>
+            <p className="eyebrow">BEGIN YOUR JOURNEY</p>
+            <h2>Enroll and Book a Session for Your Personal Wellness Journey.</h2>
+            <p>
+              Share your goals and Astha will recommend a yoga and meditation plan that matches your
+              schedule and experience level.
+            </p>
           </div>
+          <form className="leadForm">
+            <input type="text" placeholder="Your Full Name" />
+            <input type="email" placeholder="Your Email" />
+            <button type="button" className="btn btnDark">
+              Request Callback
+            </button>
+          </form>
         </div>
       </section>
-
-      <footer className="footer">
-        <div className="sectionContent footerGrid">
-          <div>
-            <div className="logo">SAYANA</div>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-          </div>
-          <div>
-            <h5>Get In Touch</h5>
-            <p>Los Angeles, CA</p>
-            <p>+001 987 7855</p>
-          </div>
-          <div>
-            <h5>Information</h5>
-            <p>About</p><p>Blog</p><p>Classes</p>
-          </div>
-          <div>
-            <h5>Helpful Links</h5>
-            <p>Services</p><p>Support</p><p>Privacy Policy</p>
-          </div>
-        </div>
-      </footer>
-    </main>
+    </SiteChrome>
   );
 }
