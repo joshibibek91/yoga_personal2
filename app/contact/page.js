@@ -6,7 +6,7 @@ export default function ContactPage() {
     <SiteChrome activePath="/contact">
       <section className="innerHero">
         <p className="eyebrow">CONTACT & BOOKING</p>
-        <h1>Book a Session with Astha Parajuli for Yoga and Meditation Training.</h1>
+        <h1>Book a Session with Astha Parajuli for Yoga and Meditation.</h1>
         <p>
           Share your goals and schedule. Astha will recommend the right program for you to enroll and
           begin your guided practice.
