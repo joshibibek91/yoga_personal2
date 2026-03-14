@@ -1,7 +1,69 @@
-import Link from 'next/link';
-import { navItems, siteContact } from '../siteData';
+ "use client";
 
-export default function SiteChrome({ activePath = '/', children }) {
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { navItems, siteContact } from "../siteData";
+
+export default function SiteChrome({ activePath = "/", children }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 24);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return undefined;
+    }
+
+    const handleOutsideClick = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [isMobileMenuOpen]);
+
+  const scrollToTopQuick = () => {
+    const startY = window.scrollY;
+    if (startY <= 0) return;
+
+    const duration = 460;
+    const startTime = performance.now();
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      window.scrollTo({ top: startY * (1 - eased) });
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <main className="site">
       <header className="topbar">
@@ -16,7 +78,7 @@ export default function SiteChrome({ activePath = '/', children }) {
       <section className="heroWrap heroWrapInner">
         <div className="container">
           <nav className="navbar">
-            <Link href="/" className="brand">
+            <Link href="/" className="brand" onClick={closeMobileMenu}>
               ASTHA PARAJULI
             </Link>
             <div className="navLinks">
@@ -24,15 +86,41 @@ export default function SiteChrome({ activePath = '/', children }) {
                 <Link
                   href={item.href}
                   key={item.href}
-                  className={activePath === item.href ? 'isActive' : ''}
+                  className={activePath === item.href ? "isActive" : ""}
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
-            <Link href="/contact" className="btn btnDark navBookBtn">
+            <Link href="/contact" className="btn btnDark navBookBtn" onClick={closeMobileMenu}>
               Book a Session
             </Link>
+            <div className="mobileMenuWrap" ref={mobileMenuRef}>
+              <button
+                type="button"
+                className={`mobileMenuToggle ${isMobileMenuOpen ? "isOpen" : ""}`}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-nav-menu"
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              >
+                <span />
+                <span />
+                <span />
+              </button>
+              <div id="mobile-nav-menu" className={`mobileMenuPanel ${isMobileMenuOpen ? "isOpen" : ""}`}>
+                {navItems.map((item) => (
+                  <Link
+                    href={item.href}
+                    key={`mobile-${item.href}`}
+                    className={activePath === item.href ? "isActive" : ""}
+                    onClick={closeMobileMenu}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </nav>
           {children}
         </div>
@@ -60,6 +148,14 @@ export default function SiteChrome({ activePath = '/', children }) {
           </div>
         </div>
       </footer>
+      <button
+        type="button"
+        className={`scrollTopBtn ${showScrollTop ? "isVisible" : ""}`}
+        aria-label="Back to top"
+        onClick={scrollToTopQuick}
+      >
+        ↑
+      </button>
     </main>
   );
 }
