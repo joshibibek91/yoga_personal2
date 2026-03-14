@@ -1019,6 +1019,11 @@ p {
 }
 
 @media (max-width: 680px) {
+  .hero {
+    gap: 16px;
+    padding: 16px 0 20px;
+  }
+
   .topbar {
     display: none;
   }
@@ -1035,6 +1040,7 @@ p {
   .heroContent h1 {
     font-size: clamp(24px, 7.8vw, 34px);
     line-height: 1.12;
+    margin: 12px 0 8px;
   }
 
   .heroLead {
@@ -1112,6 +1118,7 @@ p {
     width: 100%;
     flex-wrap: nowrap;
     gap: 10px;
+    margin-top: 14px;
   }
 
   .heroCta .btn {
