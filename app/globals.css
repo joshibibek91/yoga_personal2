@@ -328,6 +328,10 @@ p {
   flex-wrap: wrap;
 }
 
+.heroCta .btn {
+  font-size: 14px;
+}
+
 .heroStats {
   grid-area: stats;
   margin-top: 26px;
@@ -1067,7 +1071,8 @@ p {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-top: -6px;
+    margin-bottom: 8px;
   }
 
   .heroSocialLink {
@@ -1125,7 +1130,7 @@ p {
     width: auto;
     flex: 1 1 0;
     padding: 12px 10px;
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
   }
 

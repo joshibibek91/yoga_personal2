@@ -120,7 +120,7 @@ export default function Home() {
             </a>
           </div>
           <p className="eyebrow">SPIRITUAL YOGA TRAINER</p>
-          <h1>Book a Session with Astha Parajuli for Yoga and Meditation.</h1>
+          <h1>Book a Session with Astha Parajuli for Yoga and Wellness.</h1>
           <p>
             Work one-to-one with Astha Parajuli to improve flexibility, reduce
             stress, and build a spiritual daily practice through guided yoga and
