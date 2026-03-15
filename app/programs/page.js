@@ -37,7 +37,7 @@ export default function ProgramsPage() {
         </p>
       </section>
 
-      <section className="container section">
+      <section className="container section innerPageFirst">
         <div className="programGrid">
           {offerings.map((item) => (
             <article className="programCard" key={item.title}>

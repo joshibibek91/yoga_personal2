@@ -13,7 +13,7 @@ export default function ContactPage() {
         </p>
       </section>
 
-      <section className="container section contactGrid">
+      <section className="container section innerPageFirst contactGrid">
         <article className="contactCard">
           <h2>Book a Call with Astha</h2>
           <p>Fill in your details and Astha&apos;s team will contact you within 24 hours.</p>

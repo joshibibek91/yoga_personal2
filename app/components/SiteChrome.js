@@ -1,6 +1,7 @@
  "use client";
 
 import Link from "next/link";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { navItems, siteContact } from "../siteData";
 
@@ -71,7 +72,35 @@ export default function SiteChrome({ activePath = "/", children }) {
           <p>
             {siteContact.location} | {siteContact.email}
           </p>
-          <p>{siteContact.hours}</p>
+          <div className="topbarSocial" aria-label="Social links">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="topbarSocialLink"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="topbarSocialLink"
+              aria-label="Facebook"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="topbarSocialLink"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedinIn />
+            </a>
+          </div>
         </div>
       </header>
 

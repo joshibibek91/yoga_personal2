@@ -30,37 +30,24 @@ const benefits = [
   "Available for online sessions and in-person training",
 ];
 
-const plans = [
+const blogHighlights = [
   {
-    name: "Starter Plan",
-    price: "$79",
-    period: "/session",
-    features: [
-      "60-minute private class",
-      "Assessment and mobility test",
-      "Basic weekly routine",
-    ],
+    title: "Weekly Movement Targets Made Simple",
+    text: "WHO recommends 150-300 minutes of moderate activity weekly. This article shows how yoga can help you reach it.",
+    source: "WHO Physical Activity Fact Sheet",
+    href: "/blogs",
   },
   {
-    name: "Transformation Plan",
-    price: "$259",
-    period: "/month",
-    features: [
-      "4 private sessions/month",
-      "Personal practice calendar",
-      "WhatsApp support",
-    ],
-    featured: true,
+    title: "Meditation and Stress: What Evidence Supports",
+    text: "NCCIH reports mindfulness and meditation may reduce stress, anxiety, and low mood symptoms for many people.",
+    source: "NCCIH Meditation and Mindfulness",
+    href: "/blogs",
   },
   {
-    name: "Premium Plan",
-    price: "$449",
-    period: "/month",
-    features: [
-      "8 private sessions/month",
-      "Nutrition and recovery tips",
-      "Priority scheduling",
-    ],
+    title: "Breathwork for Calm and Heart Health",
+    text: "American Heart Association guidance highlights slow deep breathing for stress management and blood pressure support.",
+    source: "American Heart Association",
+    href: "/blogs",
   },
 ];
 
@@ -200,6 +187,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="container section">
+        <div className="sectionHead center">
+          <p className="eyebrow">WELLNESS BLOGS</p>
+          <h2>Latest Evidence-Informed Reads for Yoga and Meditation</h2>
+        </div>
+        <div className="homeBlogGrid">
+          {blogHighlights.map((post) => (
+            <article key={post.title} className="homeBlogCard">
+              <h3>{post.title}</h3>
+              <p>{post.text}</p>
+              <span>{post.source}</span>
+              <Link href={post.href} className="homeBlogLink">
+                Read Blog
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="container section about">
         <div className="aboutImage">
           <img
@@ -227,38 +233,6 @@ export default function Home() {
           <Link href="/about" className="btn btnPrimary">
             Meet Astha
           </Link>
-        </div>
-      </section>
-
-      <section className="container section">
-        <div className="sectionHead center">
-          <p className="eyebrow">PRICING PLANS</p>
-          <h2>Choose the Path That Supports Your Practice</h2>
-        </div>
-        <div className="pricingGrid">
-          {plans.map((plan) => (
-            <article
-              key={plan.name}
-              className={`priceCard ${plan.featured ? "featured" : ""}`}
-            >
-              <h3>{plan.name}</h3>
-              <p className="price">
-                {plan.price}
-                <span>{plan.period}</span>
-              </p>
-              <ul>
-                {plan.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-              <Link
-                href="/contact"
-                className={`btn ${plan.featured ? "btnDark" : "btnGhost"}`}
-              >
-                Choose Plan
-              </Link>
-            </article>
-          ))}
         </div>
       </section>
 

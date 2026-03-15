@@ -1,19 +1,63 @@
 import Link from 'next/link';
 import SiteChrome from '../components/SiteChrome';
 
+const roles = [
+  {
+    title: 'Wellness & Happiness Teacher',
+    org: 'Art of Living Center, Kathmandu',
+    period: 'Apr 2022 – Present',
+    points: [
+      'Conducted 50+ Happiness Programs and wellness workshops',
+      'Trained thousands in SKY Breathing and yoga techniques',
+      'Taught stress management, meditation, and breathwork to varied age groups',
+      'Facilitated workshops helping participants overcome anxiety, depression, and lifestyle challenges',
+      'Delivered corporate wellness sessions improving employee mental health and productivity',
+    ],
+  },
+  {
+    title: 'Internationally Certified Yoga Teacher',
+    org: 'Self-employed, Kathmandu & International',
+    period: 'Jan 2018 – Present',
+    points: [
+      'Lead yoga sessions for local clients and international corporate organizations',
+      'Travel internationally to conduct corporate wellness and group yoga sessions',
+      'Teach Hatha, Ashtanga, Iyengar, and Kundalini yoga with breathwork and philosophy',
+      'Customize practices for diverse cultural backgrounds and fitness levels',
+      'Facilitate sessions across multiple countries, online platforms, and local venues',
+    ],
+  },
+  {
+    title: 'Wellness Instructor – Women\'s Health',
+    org: 'IAHV (International Association for Human Values), Kathmandu',
+    period: 'Jan 2018 – Present',
+    points: [
+      'Led menstrual health workshops covering menstruation, menopause, and reproductive wellness',
+      'Taught yoga, pranayama, mudras, and meditation for hormonal balance and symptom relief',
+      'Educated on Ayurvedic practices, nutrition, and healthy lifestyle habits',
+      'Empowered women and adolescent girls through compassionate health education in rural and urban communities',
+    ],
+  },
+];
+
+const certifications = [
+  { label: 'Registered Yoga Teacher', detail: 'RYT 500-Hour', year: '2025' },
+  { label: 'Yoga, Pranayama & Meditation Teacher', detail: 'Certified Instructor', year: '2022' },
+  { label: 'Wellness Instructor', detail: 'Certified Facilitator', year: '2018' },
+];
+
 const pillars = [
   {
-    title: 'Breath Awareness',
-    text: 'Pranayama techniques that soften anxiety, improve clarity, and regulate daily energy.'
+    title: 'Breath & SKY Techniques',
+    text: 'Pranayama and Sudarshan Kriya Yoga practices that regulate the nervous system and elevate mood.',
   },
   {
-    title: 'Conscious Movement',
-    text: 'Alignment-based flows that strengthen the body while keeping the nervous system calm.'
+    title: 'Multi-Style Yoga',
+    text: 'Hatha, Ashtanga, Iyengar, and Kundalini — tailored to your body, goals, and experience level.',
   },
   {
-    title: 'Meditative Presence',
-    text: 'Short rituals that help you develop focus, gratitude, and emotional stability.'
-  }
+    title: 'Women\'s Holistic Wellness',
+    text: 'Specialised sessions for menstrual health, menopause, hormonal balance, and emotional well-being.',
+  },
 ];
 
 export default function AboutPage() {
@@ -21,39 +65,58 @@ export default function AboutPage() {
     <SiteChrome activePath="/about">
       <section className="innerHero">
         <p className="eyebrow">ABOUT ASTHA PARAJULI</p>
-        <h1>Personal Yoga Training Rooted in Spiritual Awareness and Real-Life Consistency.</h1>
+        <h1>500-Hour Certified Yoga & Wellness Instructor Based in Kathmandu, Nepal.</h1>
         <p>
-          Astha guides students who want more than fitness. Her one-to-one method builds physical
-          wellbeing, emotional grounding, and spiritual calm through daily practice.
+          Women's health facilitator, SKY Breathing trainer, and internationally active yoga teacher
+          with over 7 years of experience transforming lives through mindful movement and breathwork.
         </p>
       </section>
 
-      <section className="container section splitSection">
+      <section className="container section innerPageFirst splitSection">
         <div className="splitImage">
           <img
             src="https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Yoga trainer in a peaceful pose"
+            alt="Astha Parajuli – Yoga and Wellness Instructor"
           />
         </div>
         <div className="splitContent">
-          <p className="eyebrow">THE PHILOSOPHY</p>
-          <h2>Practice as a Path to Balance, Not Perfection.</h2>
+          <p className="eyebrow">HER PHILOSOPHY</p>
+          <h2>Wellness is a Daily Practice, Not a Destination.</h2>
           <p>
-            My method combines traditional yogic principles with modern coaching. You receive clear
-            guidance, gentle accountability, and a path that feels sustainable in your daily life.
+            Astha brings together traditional yogic wisdom and modern wellness science to offer
+            sessions that are grounded, practical, and deeply personal. Whether working with
+            corporate teams, individual clients, or community groups, her approach is always
+            compassionate, structured, and results-focused.
           </p>
           <ul className="softList">
-            <li>Mindful movement with body-safe alignment</li>
-            <li>Breath and meditation for inner steadiness</li>
-            <li>Compassionate coaching with practical progress tracking</li>
+            <li>500-hour RYT certified — highest international standard</li>
+            <li>Trained thousands across Nepal and internationally</li>
+            <li>Specialist in women's reproductive and emotional health</li>
           </ul>
+          <div className="resumeBtnRow resumeBtnRowSpaced">
+            <a
+              href="/astha-parajuli-resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btnPrimary"
+            >
+              View Resume / CV
+            </a>
+            <a
+              href="/astha-parajuli-resume.pdf"
+              download="Astha_Parajuli_Resume.pdf"
+              className="btn btnGhost"
+            >
+              Download CV
+            </a>
+          </div>
         </div>
       </section>
 
       <section className="container section">
         <div className="sectionHead center">
           <p className="eyebrow">THREE HEALING PILLARS</p>
-          <h2>How Each Session Supports Holistic Growth</h2>
+          <h2>What Every Session Is Built Around</h2>
         </div>
         <div className="simpleCardGrid">
           {pillars.map((pillar) => (
@@ -65,8 +128,49 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="container section">
+        <div className="sectionHead">
+          <p className="eyebrow">EXPERIENCE</p>
+          <h2>Professional Journey</h2>
+        </div>
+        <div className="timelineGrid">
+          {roles.map((role) => (
+            <article key={role.title} className="timelineCard">
+              <div className="timelineHead">
+                <div>
+                  <h3>{role.title}</h3>
+                  <p className="timelineOrg">{role.org}</p>
+                </div>
+                <span className="timelinePeriod">{role.period}</span>
+              </div>
+              <ul className="timelineList">
+                {role.points.map((pt) => (
+                  <li key={pt}>{pt}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="container section">
+        <div className="sectionHead">
+          <p className="eyebrow">CERTIFICATIONS</p>
+          <h2>Qualifications & Credentials</h2>
+        </div>
+        <div className="certGrid">
+          {certifications.map((cert) => (
+            <article key={cert.label} className="certCard">
+              <span className="certYear">{cert.year}</span>
+              <h3>{cert.label}</h3>
+              <p>{cert.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="container section miniCta">
-        <h2>Ready to begin your spiritual yoga journey?</h2>
+        <h2>Ready to begin your wellness journey with Astha?</h2>
         <Link href="/contact" className="btn btnPrimary">
           Book a Session
         </Link>

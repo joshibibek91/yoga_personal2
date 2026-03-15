@@ -129,6 +129,35 @@ p {
   margin: 0;
 }
 
+.topbarSocial {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbarSocialLink {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(210, 220, 230, 0.35);
+  color: #d2dce6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 12px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.topbarSocialLink:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .heroWrap {
   background: linear-gradient(180deg, #eef9f7 0%, #f8fcfb 45%, #f5f8f8 100%);
   padding-bottom: 22px;
@@ -364,9 +393,17 @@ p {
 }
 
 .innerHero {
-  padding: 20px 0 56px;
+  padding: 20px 0 24px;
   max-width: 840px;
   position: relative;
+}
+
+.innerPageFirst {
+  padding-top: 32px !important;
+}
+
+.innerPageFirst > *:first-child {
+  margin-top: 0;
 }
 
 .innerHero h1 {
@@ -631,6 +668,174 @@ p {
   margin: 10px 0 0;
 }
 
+.homeBlogGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.homeBlogCard {
+  background: #fff;
+  border: 1px solid #d7e8eb;
+  border-radius: 18px;
+  padding: 22px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 10px 24px rgba(18, 52, 67, 0.07);
+  animation: blogCardReveal 0.7s ease both;
+}
+
+.homeBlogCard:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.homeBlogCard:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.homeBlogCard h3 {
+  font-size: 19px;
+}
+
+.homeBlogCard p {
+  margin: 0;
+}
+
+.homeBlogCard span {
+  display: inline-block;
+  color: #256478;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.homeBlogLink {
+  text-decoration: none;
+  color: var(--primary-dark);
+  font-weight: 700;
+  width: fit-content;
+}
+
+.homeBlogLink:hover {
+  text-decoration: underline;
+}
+
+.blogHero {
+  max-width: 940px;
+}
+
+.blogFactsStrip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.blogFactCard {
+  background: linear-gradient(160deg, #f3fbfa 0%, #eef6ff 100%);
+  border: 1px solid #d2e8ea;
+  border-radius: 16px;
+  padding: 16px 16px 14px;
+}
+
+.blogFactCard span {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #1f6a7e;
+  margin-bottom: 6px;
+}
+
+.blogFactCard p {
+  margin: 0;
+  color: #28495f;
+}
+
+.blogGrid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.blogCard {
+  background: #fff;
+  border: 1px solid #d7e8eb;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(18, 52, 67, 0.08);
+  transition:
+    transform 0.26s ease,
+    box-shadow 0.26s ease;
+  animation: blogCardReveal 0.7s ease both;
+}
+
+.blogCard:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.blogCard:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.blogCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px rgba(18, 52, 67, 0.15);
+}
+
+.blogCard img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.blogCardBody {
+  padding: 16px 16px 18px;
+}
+
+.blogMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.blogMeta span {
+  font-size: 12px;
+  color: #5f7488;
+  font-weight: 600;
+}
+
+.blogCardBody h3 {
+  font-size: 19px;
+}
+
+.blogCardBody p {
+  margin: 10px 0 0;
+}
+
+.blogCard blockquote {
+  margin: 14px 0 0;
+  border-left: 3px solid #52b9ab;
+  padding: 2px 0 2px 10px;
+  color: #27495f;
+  font-size: 14px;
+}
+
+.blogSourceLink {
+  margin-top: 12px;
+  display: inline-block;
+  color: #1c6f83;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.blogSourceLink:hover {
+  text-decoration: underline;
+}
+
 .about {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -714,6 +919,120 @@ p {
   font-size: 12px;
   letter-spacing: 1.3px;
   font-weight: 700;
+}
+
+.resumeBtnRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.resumeBtnRowSpaced {
+  margin-top: 30px;
+}
+
+.timelineGrid {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.timelineCard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 20px rgba(18, 52, 67, 0.06);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.timelineCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(18, 52, 67, 0.1);
+}
+
+.timelineHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.timelineHead h3 {
+  font-size: 18px;
+}
+
+.timelineOrg {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.timelinePeriod {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6a8596;
+  background: #edf4f7;
+  border: 1px solid #cfe0e8;
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.timelineList {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 6px;
+}
+
+.timelineList li {
+  color: #4a6175;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.certGrid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.certCard {
+  background: linear-gradient(160deg, #f3fbfa 0%, #edf5ff 100%);
+  border: 1px solid #cde6ea;
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.certCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(18, 52, 67, 0.09);
+}
+
+.certYear {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #1a7080;
+  margin-bottom: 8px;
+}
+
+.certCard h3 {
+  font-size: 17px;
+}
+
+.certCard p {
+  margin: 6px 0 0;
+  font-size: 13px;
 }
 
 .miniCta {
@@ -1026,6 +1345,17 @@ p {
   }
 }
 
+@keyframes blogCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .footer {
   background: var(--deep);
   padding: 54px 0;
@@ -1117,6 +1447,9 @@ p {
 
   .benefitGrid,
   .programGrid,
+  .homeBlogGrid,
+  .blogFactsStrip,
+  .blogGrid,
   .pricingGrid,
   .testimonialGrid,
   .footerInner {
@@ -1311,6 +1644,9 @@ p {
 
   .benefitGrid,
   .programGrid,
+  .homeBlogGrid,
+  .blogFactsStrip,
+  .blogGrid,
   .pricingGrid,
   .testimonialGrid,
   .footerInner,
@@ -1342,5 +1678,26 @@ p {
     width: 42px;
     height: 42px;
     font-size: 20px;
+  }
+
+  .splitImage img,
+  .aboutImage img {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .certGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .timelineHead {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .resumeBtnRow .btn {
+    flex: 1 1 0;
+    text-align: center;
+    justify-content: center;
   }
 }
