@@ -24,10 +24,36 @@ const programs = [
 ];
 
 const benefits = [
-  "Book a session with Astha Parajuli for private yoga and meditation coaching",
-  "Customized weekly plans with progress tracking and accountability",
-  "Focused support for posture, flexibility, and stress relief",
-  "Available for online sessions and in-person training",
+  {
+    icon: "🌬️",
+    title: "SKY Breathing & Pranayama",
+    text: "Sudarshan Kriya and pranayama techniques that calm the nervous system, reduce anxiety, and elevate daily energy.",
+  },
+  {
+    icon: "🧘",
+    title: "Multi-Style Yoga Practice",
+    text: "Hatha, Ashtanga, Iyengar, and Kundalini — each session is tailored to your body, goals, and experience level.",
+  },
+  {
+    icon: "🌸",
+    title: "Women's Holistic Wellness",
+    text: "Specialised programs addressing menstrual health, hormonal balance, menopause, and emotional well-being.",
+  },
+  {
+    icon: "🏢",
+    title: "Corporate Wellness Sessions",
+    text: "On-site and online sessions that improve employee mental health, focus, and productivity for organisations.",
+  },
+  {
+    icon: "🧠",
+    title: "Stress & Anxiety Relief",
+    text: "Evidence-informed meditation and breathwork to overcome anxiety, depression, and everyday lifestyle challenges.",
+  },
+  {
+    icon: "🌍",
+    title: "International & Online Reach",
+    text: "Sessions delivered across multiple countries and online platforms — accessible wherever you are in the world.",
+  },
 ];
 
 const blogHighlights = [
@@ -152,18 +178,29 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="container section">
-        <div className="sectionHead">
-          <p className="eyebrow">SPIRITUAL BENEFITS</p>
-          <h2>A Sacred Routine for the Body, Breath, and Inner Awareness</h2>
-        </div>
-        <div className="benefitGrid">
-          {benefits.map((item) => (
-            <article key={item} className="benefitCard">
-              <span>✓</span>
-              <p>{item}</p>
-            </article>
-          ))}
+      <section className="benefitSection">
+        <div className="container section">
+          <div className="benefitSectionHead">
+            <div>
+              <p className="eyebrow">WHAT YOU GAIN</p>
+              <h2>Real Benefits From a Certified Instructor With 7+ Years of Practice</h2>
+            </div>
+            <p className="benefitSubtext">
+              Thousands trained across Nepal and internationally — each benefit below is drawn
+              directly from Astha's certified programs and workshops.
+            </p>
+          </div>
+          <div className="benefitNewGrid">
+            {benefits.map((item) => (
+              <article key={item.title} className="benefitNewCard">
+                <div className="benefitIcon">{item.icon}</div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -209,26 +246,23 @@ export default function Home() {
       <section className="container section about">
         <div className="aboutImage">
           <img
-            src="https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt="Yoga trainer coaching a student"
+            src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80"
+            alt="Astha Parajuli – Certified Yoga and Wellness Instructor"
           />
         </div>
         <div className="aboutContent">
           <p className="eyebrow">ABOUT ASTHA PARAJULI</p>
-          <h2>
-            About Astha Parajuli: Your Personal Yoga and Meditation Trainer.
-          </h2>
+          <h2>500-Hour Certified Yoga & Wellness Instructor, Kathmandu.</h2>
           <p>
-            Astha designs each class around your personal goals, whether you
-            want to improve posture, reduce anxiety, or deepen your spiritual
-            practice through meditation.
+            With over 7 years of experience, Astha has trained thousands across
+            Nepal and internationally — through the Art of Living Center, IAHV,
+            and private corporate wellness programs. She specialises in SKY
+            Breathing, multi-style yoga, and women's holistic health.
           </p>
           <ul>
-            <li>Chakra-aligned breathwork and grounding asanas</li>
-            <li>
-              Mindful sequences for stress release and nervous system reset
-            </li>
-            <li>Simple daily rituals to sustain spiritual wellbeing</li>
+            <li>RYT 500-hour certified — highest international standard</li>
+            <li>50+ Happiness Programs & wellness workshops conducted</li>
+            <li>Specialist in women's reproductive and emotional health</li>
           </ul>
           <Link href="/about" className="btn btnPrimary">
             Meet Astha
