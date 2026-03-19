@@ -60,17 +60,6 @@ export default function BlogsPage() {
       </section>
 
       <section className="container section innerPageFirst">
-        <div className="blogFactsStrip">
-          {quickFacts.map((fact) => (
-            <article key={fact} className="blogFactCard">
-              <span>Fact</span>
-              <p>{fact}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="container section">
         <div className="sectionHead">
           <p className="eyebrow">LATEST ARTICLES</p>
           <h2>Read, Practice, and Build a Better Routine</h2>
@@ -91,6 +80,17 @@ export default function BlogsPage() {
                   Source: {post.sourceLabel}
                 </a>
               </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="container section">
+        <div className="blogFactsStrip">
+          {quickFacts.map((fact) => (
+            <article key={fact} className="blogFactCard">
+              <span>Fact</span>
+              <p>{fact}</p>
             </article>
           ))}
         </div>
