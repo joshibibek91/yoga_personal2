@@ -7,8 +7,8 @@ export const navItems = [
 ];
 
 export const siteContact = {
-  location: 'Kathmandu, Nepal',
-  email: 'hello@asthaparajuli.com',
-  phone: '+977 9812345678',
+  location: 'Kathmandu 44600, Nepal',
+  email: 'wellbeing.astha@gmail.com',
+  phone: '+977 9810382425',
   hours: 'Mon-Sat: 6:00 AM - 8:00 PM'
 };

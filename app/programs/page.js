@@ -67,6 +67,23 @@ const programs = [
     cta: 'Request Itinerary',
   },
   {
+    id: 'project-pavitra',
+    eyebrow: 'IAHV INITIATIVE',
+    title: 'Project Pavitra Trainer',
+    badge: 'Women\'s Wellness',
+    image: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Astha is a certified Project Pavitra Trainer under IAHV (International Association for Human Values) — an evidence-based program empowering adolescent girls and women through menstrual health education, Ayurveda-based lifestyle guidance, and yogic practices. The program breaks stigma and builds confidence through knowledge, community, and natural wellness tools.',
+    highlights: [
+      'Menstrual health & hygiene education for girls aged 11–45',
+      'Yogic practices and Ayurveda-based lifestyle changes',
+      'Pranayama techniques to ease premenstrual tension',
+      'Diet guidance using locally available foods to prevent anaemia',
+      'Myth-busting activities and community-based empowerment',
+    ],
+    cta: 'Join the Program',
+  },
+  {
     id: 'dance',
     eyebrow: 'CLASSICAL & CULTURAL',
     title: 'Dance Classes',
