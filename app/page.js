@@ -153,8 +153,8 @@ export default function Home() {
           <div className="shapeOne" />
           <div className="shapeTwo" />
           <img
-            src="https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=1000&q=80"
-            alt="Personal yoga trainer"
+            src="/astha-hero.png"
+            alt="Astha Parajuli – Yoga and Wellness Trainer"
           />
           <div className="floatingCard">
             <strong>Moonlight Sound Healing</strong>
@@ -183,11 +183,15 @@ export default function Home() {
           <div className="benefitSectionHead">
             <div>
               <p className="eyebrow">WHAT YOU GAIN</p>
-              <h2>Real Benefits From a Certified Instructor With 7+ Years of Practice</h2>
+              <h2>
+                Real Benefits From a Certified Instructor With 7+ Years of
+                Practice
+              </h2>
             </div>
             <p className="benefitSubtext">
-              Thousands trained across Nepal and internationally — each benefit below is drawn
-              directly from Astha's certified programs and workshops.
+              Thousands trained across Nepal and internationally — each benefit
+              below is drawn directly from Astha's certified programs and
+              workshops.
             </p>
           </div>
           <div className="benefitNewGrid">
