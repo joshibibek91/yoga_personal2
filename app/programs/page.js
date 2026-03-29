@@ -116,6 +116,7 @@ export default function ProgramsPage() {
       <div className="container section innerPageFirst programsWrapper">
         {programs.map((program, index) => (
           <article
+            id={program.id}
             key={program.id}
             className={`programRow ${index % 2 !== 0 ? 'programRowReverse' : ''}`}
           >

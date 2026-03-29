@@ -1,9 +1,14 @@
- "use client";
-
+"use client";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
-import { navItems, siteContact } from "../siteData";
+import { footerPrograms, navItems, siteContact, socialLinks } from "../siteData";
+
+const socialIconMap = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  linkedin: FaLinkedinIn,
+};
 
 export default function SiteChrome({ activePath = "/", children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -73,33 +78,22 @@ export default function SiteChrome({ activePath = "/", children }) {
             {siteContact.location} | {siteContact.email}
           </p>
           <div className="topbarSocial" aria-label="Social links">
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="topbarSocialLink"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="topbarSocialLink"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="topbarSocialLink"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedinIn />
-            </a>
+            {socialLinks.map((s) => {
+              const Icon = socialIconMap[s.icon];
+              if (!Icon) return null;
+              return (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="topbarSocialLink"
+                  aria-label={s.label}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
           </div>
         </div>
       </header>
@@ -157,23 +151,68 @@ export default function SiteChrome({ activePath = "/", children }) {
 
       <footer className="footer">
         <div className="container footerInner">
-          <div>
+          <div className="footerCol footerColIntro">
             <h4>ASTHA PARAJULI</h4>
             <p>
               Personal yoga and meditation trainer helping you build strength, calm, and spiritual
               balance through guided one-to-one practice.
             </p>
+            <div className="footerSocial" aria-label="Social links">
+              {socialLinks.map((s) => {
+                const Icon = socialIconMap[s.icon];
+                if (!Icon) return null;
+                return (
+                  <a
+                    key={`footer-${s.href}`}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footerSocialLink"
+                    aria-label={s.label}
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
+            </div>
           </div>
-          <div>
+          <div className="footerCol">
             <h5>Contact</h5>
-            <p>{siteContact.phone}</p>
-            <p>{siteContact.email}</p>
+            <p>{siteContact.location}</p>
+            <p>
+              <a href={`tel:${siteContact.phone.replace(/\s/g, "")}`}>{siteContact.phone}</a>
+            </p>
+            <p>
+              <a href={`mailto:${siteContact.email}`}>{siteContact.email}</a>
+            </p>
           </div>
-          <div>
-            <h5>Quick Links</h5>
-            {navItems.slice(1).map((item) => (
-              <p key={item.href}>{item.label}</p>
-            ))}
+          <div className="footerCol">
+            <h5>Programs</h5>
+            <ul className="footerList">
+              {footerPrograms.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="footerCol">
+            <h5>Menu</h5>
+            <ul className="footerList">
+              {navItems
+                .slice(1)
+                .filter((item) => item.href !== "/contact")
+                .map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href}>{item.label}</Link>
+                  </li>
+                ))}
+              <li className="footerInquireItem">
+                <Link href="/contact" className="btnFooterInquire">
+                  Inquire
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </footer>

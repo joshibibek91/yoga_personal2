@@ -1,6 +1,12 @@
 import SiteChrome from "../components/SiteChrome";
-import { siteContact } from "../siteData";
+import { siteContact, socialLinks } from "../siteData";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
+const contactSocialIconMap = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  linkedin: FaLinkedinIn,
+};
 
 export default function ContactPage() {
   return (
@@ -50,33 +56,22 @@ export default function ContactPage() {
           </p>
           <div className="contactSocial">
             <div className="contactSocialLinks" aria-label="Trainer social links">
-              <a
-                href="https://www.instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contactSocialLink"
-                aria-label="Instagram"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contactSocialLink"
-                aria-label="Facebook"
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href="https://www.linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contactSocialLink"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedinIn />
-              </a>
+              {socialLinks.map((s) => {
+                const Icon = contactSocialIconMap[s.icon];
+                if (!Icon) return null;
+                return (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contactSocialLink"
+                    aria-label={s.label}
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
             </div>
           </div>
           <div className="contactQuote">"Pause, breathe, and healing begins within."</div>

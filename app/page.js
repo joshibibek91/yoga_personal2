@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import SiteChrome from "./components/SiteChrome";
+import { socialLinks } from "./siteData";
+
+const heroSocialIconMap = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  linkedin: FaLinkedinIn,
+};
 
 const programs = [
   {
@@ -104,33 +111,22 @@ export default function Home() {
       <div className="hero">
         <div className="heroContent">
           <div className="heroSocial" aria-label="Social links">
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="heroSocialLink"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="heroSocialLink"
-              aria-label="Facebook"
-            >
-              <FaFacebookF />
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="heroSocialLink"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedinIn />
-            </a>
+            {socialLinks.map((s) => {
+              const Icon = heroSocialIconMap[s.icon];
+              if (!Icon) return null;
+              return (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="heroSocialLink"
+                  aria-label={s.label}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
           </div>
           <p className="eyebrow">SPIRITUAL YOGA TRAINER</p>
           <h1>Astha Parajuli for Yoga &amp; Wellness.</h1>
