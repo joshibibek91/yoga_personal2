@@ -7,7 +7,7 @@ const programs = [
     eyebrow: 'PRIVATE & GROUP',
     title: 'Yoga Courses',
     badge: 'Most Popular',
-    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/program-yoga-courses.png',
     description:
       'One-to-one private sessions and small group classes tailored to your goals — flexibility, strength, stress relief, or spiritual deepening. Available online and in-person in Kathmandu.',
     highlights: [
@@ -23,7 +23,7 @@ const programs = [
     eyebrow: 'ADVENTURE + WELLNESS',
     title: 'Yoga Trek',
     badge: 'Unique Experience',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/program-yoga-trek.png',
     description:
       'Combine the magic of Nepal\'s Himalayan trails with guided yoga and meditation at altitude. Each morning and evening session is held amidst breathtaking mountain scenery, bringing body and soul into harmony.',
     highlights: [
@@ -124,7 +124,15 @@ export default function ProgramsPage() {
               <span className="programRowMobileName">{program.title}</span>
               <span className="programRowMobileCat">{program.eyebrow}</span>
             </div>
-            <div className="programRowImage">
+            <div
+              className={[
+                'programRowImage',
+                program.id === 'yoga-courses' && 'programRowImageYogaCourses',
+                program.id === 'yoga-trek' && 'programRowImageYogaTrek',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+            >
               <img src={program.image} alt={program.title} />
               {program.badge && <span className="programBadge">{program.badge}</span>}
             </div>
