@@ -88,7 +88,7 @@ const programs = [
     eyebrow: 'CLASSICAL & CULTURAL',
     title: 'Dance Classes',
     badge: 'Mind-Body Arts',
-    image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/program-dance-classes.png',
     description:
       'Explore the sacred intersection of movement and meditation through classical Indian dance forms, cultural Nepali movement arts, and yogic dance — a practice that integrates physical expression with breath, rhythm, and spiritual awareness.',
     highlights: [
