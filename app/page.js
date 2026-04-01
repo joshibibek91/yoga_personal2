@@ -151,7 +151,9 @@ export default function Home() {
           <div className="shapeTwo" />
           <img
             src="/astha-hero.png"
-            alt="Astha Parajuli – Yoga and Wellness Trainer"
+            alt="Yoga and meditation in a calm studio — peaceful practice"
+            width={1080}
+            height={1080}
           />
           <div className="floatingCard">
             <strong>Moonlight Sound Healing</strong>
