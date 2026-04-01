@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import SiteChrome from "./components/SiteChrome";
@@ -149,12 +150,16 @@ export default function Home() {
         <div className="heroVisual">
           <div className="shapeOne" />
           <div className="shapeTwo" />
-          <img
-            src="/astha-hero.png"
-            alt="Yoga and meditation in a calm studio — peaceful practice"
-            width={1080}
-            height={1080}
-          />
+          <div className="heroImageFrame">
+            <Image
+              src="/astha-hero.png"
+              alt="Yoga and meditation in a calm studio — peaceful practice"
+              fill
+              priority
+              sizes="(max-width: 680px) min(88vw, 360px), (max-width: 1040px) min(90vw, 420px), 460px"
+              className="heroHeroImage"
+            />
+          </div>
           <div className="floatingCard">
             <strong>Moonlight Sound Healing</strong>
             <span>Friday at 7:30 PM</span>

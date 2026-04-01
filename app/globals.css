@@ -542,20 +542,26 @@ p {
 .heroVisual {
   grid-area: visual;
   position: relative;
-  min-height: 520px;
+  min-height: clamp(340px, 52vw, 560px);
   display: grid;
   place-items: center;
 }
 
-.heroVisual img {
+/* Square frame scales on all viewports; image is 1:1, cover + center crop */
+.heroImageFrame {
   position: relative;
   z-index: 2;
   width: min(94%, 460px);
-  height: 480px;
-  object-fit: cover;
-  object-position: center 42%;
+  aspect-ratio: 1;
+  max-width: 460px;
+  overflow: hidden;
   border-radius: 28px;
   box-shadow: 0 28px 52px rgba(90, 75, 120, 0.2);
+}
+
+.heroHeroImage {
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .shapeOne,
@@ -1992,11 +1998,12 @@ p {
   }
 
   .heroVisual {
-    min-height: 450px;
+    min-height: clamp(320px, 58vw, 500px);
   }
 
-  .heroVisual img {
-    height: 420px;
+  .heroImageFrame {
+    width: min(90vw, 420px);
+    max-width: 420px;
   }
 
   .shapeOne {
@@ -2248,11 +2255,13 @@ p {
   }
 
   .heroVisual {
-    min-height: 380px;
+    min-height: clamp(300px, 92vw, 420px);
   }
 
-  .heroVisual img {
-    height: 340px;
+  .heroImageFrame {
+    width: min(88vw, 360px);
+    max-width: 360px;
+    border-radius: 22px;
   }
 
   .shapeOne {
