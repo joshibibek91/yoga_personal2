@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import SiteChrome from "./components/SiteChrome";
+import LeadForm from "./components/LeadForm";
 import { socialLinks } from "./siteData";
 
 const heroSocialIconMap = {
@@ -300,13 +301,11 @@ export default function Home() {
               plan that matches your schedule and experience level.
             </p>
           </div>
-          <form className="leadForm">
-            <input type="text" placeholder="Your Full Name" />
-            <input type="email" placeholder="Your Email" />
-            <button type="button" className="btn btnDark">
-              Request Callback
-            </button>
-          </form>
+          <LeadForm
+            variant="callback"
+            source="home"
+            submitLabel="Request Callback"
+          />
         </div>
       </section>
     </SiteChrome>

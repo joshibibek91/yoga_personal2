@@ -1651,6 +1651,38 @@ p {
   border-color: #9b7bcd;
 }
 
+.leadFormHp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.leadFormStatus {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.leadFormStatus.isSuccess {
+  color: #1b5e20;
+}
+
+.leadFormStatus.isError {
+  color: #b71c1c;
+}
+
+.ctaSection .leadFormStatus.isSuccess,
+.ctaSection .leadFormStatus.isError {
+  color: #fff;
+  opacity: 0.95;
+}
+
 .contactGrid {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;

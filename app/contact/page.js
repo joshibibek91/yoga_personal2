@@ -1,4 +1,5 @@
 import SiteChrome from "../components/SiteChrome";
+import LeadForm from "../components/LeadForm";
 import { siteContact, socialLinks } from "../siteData";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -27,15 +28,7 @@ export default function ContactPage() {
             Fill in your details and Astha&apos;s team will contact you within
             24 hours.
           </p>
-          <form className="leadForm">
-            <input type="text" placeholder="Full Name" />
-            <input type="email" placeholder="Email Address" />
-            <input type="text" placeholder="Preferred Time Slot" />
-            <textarea rows="5" placeholder="Tell us about your goals..." />
-            <button type="button" className="btn btnDark">
-              Send Request
-            </button>
-          </form>
+          <LeadForm variant="full" source="contact" submitLabel="Send Request" />
         </article>
 
         <article className="contactCard contactInfo">
