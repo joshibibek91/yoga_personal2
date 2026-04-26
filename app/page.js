@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
 import SiteChrome from "./components/SiteChrome";
 import LeadForm from "./components/LeadForm";
 import { socialLinks } from "./siteData";
@@ -34,9 +37,9 @@ const programs = [
 
 const benefits = [
   {
-    icon: "🌬️",
-    title: "SKY Breathing & Pranayama",
-    text: "Sudarshan Kriya and pranayama techniques that calm the nervous system, reduce anxiety, and elevate daily energy.",
+    icon: "🧘",
+    title: "Private Yoga Class",
+    text: "Personalised one-to-one practice with alignment, breath guidance, and posture adjustments to accelerate growth, reduce tension, and build confidence.",
   },
   {
     icon: "🧘",
@@ -108,6 +111,47 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const benefitGridRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(true);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  
+  // Create extended benefits array for infinite loop
+  const extendedBenefits = [...benefits, ...benefits, ...benefits];
+
+  useEffect(() => {
+    // On mobile, scroll to show first card (second item) centered on load
+    if (benefitGridRef.current) {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        // With 40px padding on grid, scroll to second card
+        // Second card starts at: 290 (first card) + 12 (gap) + 40 (left padding) - 40 (to account for grid padding)
+        const scrollPosition = 290 + 12;
+        setTimeout(() => {
+          benefitGridRef.current.scrollLeft = scrollPosition;
+        }, 100);
+      }
+    }
+  }, []);
+
+  const handleScroll = () => {
+    if (benefitGridRef.current) {
+      // Allow continuous scrolling
+      setCanScrollLeft(true);
+      setCanScrollRight(true);
+    }
+  };
+
+  const scroll = (direction) => {
+    if (benefitGridRef.current) {
+      const cardWidth = benefitGridRef.current.querySelector(".benefitNewCard")?.offsetWidth || 290;
+      const gap = 12;
+      const scrollAmount = cardWidth + gap;
+      benefitGridRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <SiteChrome activePath="/">
       <div className="hero">
@@ -176,7 +220,7 @@ export default function Home() {
             <p>Meditation Circles</p>
           </article>
           <article>
-            <h3>12+</h3>
+            <h3>7+</h3>
             <p>Years of Practice</p>
           </article>
         </div>
@@ -198,16 +242,40 @@ export default function Home() {
               workshops.
             </p>
           </div>
-          <div className="benefitNewGrid">
-            {benefits.map((item) => (
-              <article key={item.title} className="benefitNewCard">
-                <div className="benefitIcon">{item.icon}</div>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-              </article>
-            ))}
+          <div className="benefitCarouselWrapper">
+            <div className="benefitCarouselContainer">
+              <div
+                className="benefitNewGrid"
+                ref={benefitGridRef}
+                onScroll={handleScroll}
+              >
+                {extendedBenefits.map((item, idx) => (
+                  <article key={`${item.title}-${idx}`} className="benefitNewCard">
+                    <div className="benefitIcon">{item.icon}</div>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+            <div className="benefitCarouselControls">
+              <button
+                className={`benefitCarouselArrow benefitCarouselArrowLeft ${!canScrollLeft ? "disabled" : ""}`}
+                onClick={() => scroll("left")}
+                aria-label="Scroll benefits left"
+              >
+                &lt;
+              </button>
+              <button
+                className={`benefitCarouselArrow benefitCarouselArrowRight ${!canScrollRight ? "disabled" : ""}`}
+                onClick={() => scroll("right")}
+                aria-label="Scroll benefits right"
+              >
+                &gt;
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -264,8 +332,8 @@ export default function Home() {
           <p>
             With over 7 years of experience, Astha has trained thousands across
             Nepal and internationally — through the Art of Living Center, IAHV,
-            and private corporate wellness programs. She specialises in SKY
-            Breathing, multi-style yoga, and women's holistic health.
+            and private corporate wellness programs. She specialises in private
+            yoga, multi-style practice, and women's holistic health.
           </p>
           <ul>
             <li>RYT 500-hour certified — highest international standard</li>

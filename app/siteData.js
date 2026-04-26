@@ -9,7 +9,7 @@ export const navItems = [
 export const siteContact = {
   location: 'Kathmandu 44600, Nepal',
   email: 'wellbeing.astha@gmail.com',
-  phone: '+977 9810382425',
+  phone: '+977 9764630363',
   hours: 'Mon-Sat: 6:00 AM - 8:00 PM'
 };
 

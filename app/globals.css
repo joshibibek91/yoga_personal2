@@ -705,6 +705,52 @@ p {
   line-height: 1.65;
 }
 
+.benefitCarouselWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.benefitCarouselContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.benefitCarouselArrow {
+  display: none;
+  background: transparent;
+  color: var(--primary);
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.benefitCarouselArrow:hover:not(.disabled) {
+  color: var(--primary-dark);
+  transform: scale(1.2);
+}
+
+.benefitCarouselArrow.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.benefitCarouselControls {
+  display: none;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
 .benefitGrid {
   margin-top: 30px;
   display: grid;
@@ -2299,10 +2345,33 @@ p {
     flex-direction: row;
     overflow-x: auto;
     gap: 12px;
-    padding-bottom: 14px;
+    padding: 0 40px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+
+  .benefitCarouselContainer {
+    position: relative;
+    width: 100%;
+    overflow-x: visible;
+    margin: 0 -40px;
+  }
+
+  .benefitCarouselWrapper {
+    position: relative;
+    padding: 0;
+  }
+
+  .benefitCarouselArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefitCarouselControls {
+    display: flex;
   }
 
   .benefitNewGrid::-webkit-scrollbar {
@@ -2310,9 +2379,8 @@ p {
   }
 
   .benefitNewCard {
-    flex: 0 0 74vw;
-    max-width: 290px;
-    scroll-snap-align: start;
+    flex: 0 0 290px;
+    scroll-snap-align: center;
     flex-direction: column;
     gap: 12px;
   }
