@@ -114,24 +114,29 @@ export default function Home() {
   const benefitGridRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(true);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  
-  // Create extended benefits array for infinite loop
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Create extended benefits array for infinite loop on mobile
   const extendedBenefits = [...benefits, ...benefits, ...benefits];
+  const displayBenefits = isMobile ? extendedBenefits : benefits;
 
   useEffect(() => {
-    // On mobile, scroll to show first card (second item) centered on load
-    if (benefitGridRef.current) {
-      const isMobile = window.innerWidth < 768;
-      if (isMobile) {
-        // With 40px padding on grid, scroll to second card
-        // Second card starts at: 290 (first card) + 12 (gap) + 40 (left padding) - 40 (to account for grid padding)
-        const scrollPosition = 290 + 12;
-        setTimeout(() => {
-          benefitGridRef.current.scrollLeft = scrollPosition;
-        }, 100);
-      }
-    }
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 680);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
+
+  useEffect(() => {
+    if (benefitGridRef.current && isMobile) {
+      // With 40px padding on grid, scroll to second card
+      // Second card starts at: 290 (first card) + 12 (gap)
+      const scrollPosition = 290 + 12;
+      setTimeout(() => {
+        benefitGridRef.current.scrollLeft = scrollPosition;
+      }, 100);
+    }
+  }, [isMobile]);
 
   const handleScroll = () => {
     if (benefitGridRef.current) {
@@ -249,7 +254,7 @@ export default function Home() {
                 ref={benefitGridRef}
                 onScroll={handleScroll}
               >
-                {extendedBenefits.map((item, idx) => (
+                {displayBenefits.map((item, idx) => (
                   <article key={`${item.title}-${idx}`} className="benefitNewCard">
                     <div className="benefitIcon">{item.icon}</div>
                     <div>
