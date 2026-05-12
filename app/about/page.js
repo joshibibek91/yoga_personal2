@@ -45,6 +45,17 @@ const certifications = [
   { label: 'Wellness Instructor', detail: 'Certified Facilitator', year: '2018' },
 ];
 
+const classes = [
+  'Ashtanga Vinyasa Yoga',
+  'Hatha Yoga',
+  'Yin Yoga',
+  'Acro Yoga',
+  'Power Yoga',
+  'Singing Bowl Healing',
+  'Yoga Flow & Flexibility',
+  'Breathwork & Meditation',
+];
+
 const pillars = [
   {
     title: 'Breath & SKY Techniques',
@@ -93,23 +104,6 @@ export default function AboutPage() {
             <li>Trained thousands across Nepal and internationally</li>
             <li>Specialist in women's reproductive and emotional health</li>
           </ul>
-          <div className="resumeBtnRow resumeBtnRowSpaced">
-            <a
-              href="/astha-parajuli-resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btnPrimary"
-            >
-              View Resume / CV
-            </a>
-            <a
-              href="/astha-parajuli-resume.pdf"
-              download="Astha_Parajuli_Resume.pdf"
-              className="btn btnGhost"
-            >
-              Download CV
-            </a>
-          </div>
         </div>
       </section>
 
@@ -123,6 +117,20 @@ export default function AboutPage() {
             <article key={pillar.title} className="simpleCard">
               <h3>{pillar.title}</h3>
               <p>{pillar.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="container section">
+        <div className="sectionHead center">
+          <p className="eyebrow">YOGA & WELLNESS CLASSES</p>
+          <h2>Classes Offered by Astha</h2>
+        </div>
+        <div className="simpleCardGrid">
+          {classes.map((cls) => (
+            <article key={cls} className="simpleCard">
+              <h3>{cls}</h3>
             </article>
           ))}
         </div>
