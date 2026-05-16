@@ -24,7 +24,7 @@ export const footerPrograms = [
   { label: 'Yoga Courses', href: '/programs#yoga-courses' },
   { label: 'Yoga Trek', href: '/programs#yoga-trek' },
   { label: 'Happiness Course', href: '/programs#aol-happiness' },
-  { label: 'Retreat with House of Ruchi', href: '/programs#retreat-ruchi' },
+  { label: 'National and International Retreat', href: '/programs#retreat-ruchi' },
   { label: 'Project Pavitra', href: '/programs#project-pavitra' },
   { label: 'Dance Classes', href: '/programs#dance' }
 ];

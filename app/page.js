@@ -1,11 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
 import SiteChrome from "./components/SiteChrome";
 import LeadForm from "./components/LeadForm";
+import HeroCta from "./components/HeroCta";
+import BenefitCarousel from "./components/BenefitCarousel";
 import { socialLinks } from "./siteData";
 
 const heroSocialIconMap = {
@@ -13,27 +12,6 @@ const heroSocialIconMap = {
   facebook: FaFacebookF,
   linkedin: FaLinkedinIn,
 };
-
-const programs = [
-  {
-    title: "Private 1:1 Yoga",
-    text: "Personal sessions for flexibility, alignment, and strength at your pace.",
-    image:
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Stress Relief Yoga",
-    text: "Breath-led movement to reduce anxiety and improve emotional balance.",
-    image:
-      "https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    title: "Online Live Classes",
-    text: "Join guided sessions from home with weekly progress reviews and support.",
-    image:
-      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
-  },
-];
 
 const benefits = [
   {
@@ -65,6 +43,27 @@ const benefits = [
     icon: "🌍",
     title: "International & Online Reach",
     text: "Sessions delivered across multiple countries and online platforms — accessible wherever you are in the world.",
+  },
+];
+
+const programs = [
+  {
+    title: "Private 1:1 Yoga",
+    text: "Personal sessions for flexibility, alignment, and strength at your pace.",
+    image:
+      "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Stress Relief Yoga",
+    text: "Breath-led movement to reduce anxiety and improve emotional balance.",
+    image:
+      "https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Online Live Classes",
+    text: "Join guided sessions from home with weekly progress reviews and support.",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80",
   },
 ];
 
@@ -110,53 +109,32 @@ const testimonials = [
   },
 ];
 
-export default function Home() {
-  const benefitGridRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(true);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+function estimateBtnPx(text) {
+  // Nunito 14px, padding 12px 22px → 44px horizontal total
+  // ~7.8px average char width at 14px (tighter estimate to avoid oversizing)
+  return Math.ceil(text.length * 7.8 + 44);
+}
 
-  // Create extended benefits array for infinite loop on mobile
-  const extendedBenefits = [...benefits, ...benefits, ...benefits];
-  const displayBenefits = isMobile ? extendedBenefits : benefits;
+async function getBookBtnText() {
+  const url = process.env.SHEETDB_API_URL;
+  if (!url) return "Book a Session";
+  try {
+    const res = await fetch(`${url}?sheet=Program%20Name`, { cache: "no-store" });
+    if (!res.ok) return "Book a Session";
+    const data = await res.json();
+    return data?.[0]?.["Program Name"]?.trim() || "Book a Session";
+  } catch {
+    return "Book a Session";
+  }
+}
 
-  useEffect(() => {
-    const updateIsMobile = () => setIsMobile(window.innerWidth < 680);
-    updateIsMobile();
-    window.addEventListener("resize", updateIsMobile);
-    return () => window.removeEventListener("resize", updateIsMobile);
-  }, []);
+export default async function Home() {
+  const bookBtnText = await getBookBtnText();
+  const initialMinWidth = Math.max(
+    estimateBtnPx(bookBtnText),
+    estimateBtnPx("View Programs")
+  );
 
-  useEffect(() => {
-    if (benefitGridRef.current && isMobile) {
-      // With 40px padding on grid, scroll to second card
-      // Second card starts at: 290 (first card) + 12 (gap)
-      const scrollPosition = 290 + 12;
-      setTimeout(() => {
-        benefitGridRef.current.scrollLeft = scrollPosition;
-      }, 100);
-    }
-  }, [isMobile]);
-
-  const handleScroll = () => {
-    if (benefitGridRef.current) {
-      // Allow continuous scrolling
-      setCanScrollLeft(true);
-      setCanScrollRight(true);
-    }
-  };
-
-  const scroll = (direction) => {
-    if (benefitGridRef.current) {
-      const cardWidth = benefitGridRef.current.querySelector(".benefitNewCard")?.offsetWidth || 290;
-      const gap = 12;
-      const scrollAmount = cardWidth + gap;
-      benefitGridRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
   return (
     <SiteChrome activePath="/">
       <div className="hero">
@@ -186,14 +164,7 @@ export default function Home() {
             stress, and build a spiritual daily practice through guided yoga and
             meditation.
           </p>
-          <div className="heroCta">
-            <Link href="/contact" className="btn btnPrimary">
-              Book a Session
-            </Link>
-            <Link href="/programs" className="btn btnGhost">
-              View Programs
-            </Link>
-          </div>
+          <HeroCta bookBtnText={bookBtnText} initialMinWidth={initialMinWidth} />
         </div>
 
         <div className="heroVisual">
@@ -247,41 +218,7 @@ export default function Home() {
               workshops.
             </p>
           </div>
-          <div className="benefitCarouselWrapper">
-            <div className="benefitCarouselContainer">
-              <div
-                className="benefitNewGrid"
-                ref={benefitGridRef}
-                onScroll={handleScroll}
-              >
-                {displayBenefits.map((item, idx) => (
-                  <article key={`${item.title}-${idx}`} className="benefitNewCard">
-                    <div className="benefitIcon">{item.icon}</div>
-                    <div>
-                      <h3>{item.title}</h3>
-                      <p>{item.text}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-            <div className="benefitCarouselControls">
-              <button
-                className={`benefitCarouselArrow benefitCarouselArrowLeft ${!canScrollLeft ? "disabled" : ""}`}
-                onClick={() => scroll("left")}
-                aria-label="Scroll benefits left"
-              >
-                &lt;
-              </button>
-              <button
-                className={`benefitCarouselArrow benefitCarouselArrowRight ${!canScrollRight ? "disabled" : ""}`}
-                onClick={() => scroll("right")}
-                aria-label="Scroll benefits right"
-              >
-                &gt;
-              </button>
-            </div>
-          </div>
+          <BenefitCarousel benefits={benefits} />
         </div>
       </section>
 
