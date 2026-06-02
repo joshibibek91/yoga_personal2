@@ -86,7 +86,7 @@ export default function AboutPage() {
       <section className="container section innerPageFirst splitSection">
         <div className="splitImage">
           <img
-            src="https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            src="/images/astha-about.jpg"
             alt="Astha Parajuli – Yoga and Wellness Instructor"
           />
         </div>
